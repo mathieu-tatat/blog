@@ -4,22 +4,23 @@
   <title>Delete article - The BLOG</title>
   <?php include "head.php";?> 
  </head>  
-
-<?php
-session_start();
-if($_SESSION['id']['id_droits'] == 1337){
-$user = $_SESSION['login'];
-
-$bdd = mysqli_connect("localhost","root","root","blog");mysqli_set_charset($bdd,"UTF8");
-$requete = mysqli_query($bdd,"SELECT * FROM articles");
-$result = mysqli_fetch_all($requete,MYSQLI_ASSOC);   
-
-?>
-
 <body>
     <header>
         <?php include "header.php";?>
     </header>
+        <?php include "ham_menu.php"; ?>
+    
+    <?php
+    if($_SESSION['id']['id_droits'] == 1337){
+    $user = $_SESSION['login'];
+
+    include 'db_link.php';
+    $requete = mysqli_query($conn,"SELECT * FROM articles");
+    $result = mysqli_fetch_all($requete,MYSQLI_ASSOC);   
+
+    ?>
+
+
 
 
         <H2></H2>
@@ -43,12 +44,12 @@ $result = mysqli_fetch_all($requete,MYSQLI_ASSOC);
                 <?php 
                  
                 $id = $_GET['id'];
-                $req=mysqli_query($bdd,"SELECT * from articles  WHERE id = '$id' ");
+                $req=mysqli_query($conn,"SELECT * from articles  WHERE id = '$id' ");
                 $res=mysqli_fetch_all($req,MYSQLI_ASSOC);
 
 
                 if(isset($_POST['deleteArticle'])){
-                    $req = mysqli_query($bdd,"DELETE FROM `articles` WHERE `id` = $id");
+                    $req = mysqli_query($conn,"DELETE FROM `articles` WHERE `id` = $id");
                     header("location:admin.php"); // lien vers la page de suppression de l'utilisateur 
                 }               
         

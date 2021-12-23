@@ -99,7 +99,7 @@ $i = 0;
 <div class ="commentsA">
   <article class ="commentA">
     <form method = "post">
-      <input size = 50 placeholder="Your comment here" type="text" name="comment"> </input>
+      <input placeholder="Your comment here" type="text" name="comment"> </input>
       <input name ="addComment" type ="submit"class ="addComment" value= "Ajouter un commentaire"></input>
     </form>
   </article>
@@ -111,7 +111,7 @@ $i = 0;
 //_________________add COMMENT_________________//
 
 $comment = $_POST["comment"];
-$id_user = 1;
+$id_user = $_SESSION['idu']['id'];
 
 $toDate = date_format(date_create($toDate),'Y-m-d  H:i');
 $toDate =strftime('%Y-%m-%dT%H:%M', strtotime($toDate));

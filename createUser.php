@@ -4,22 +4,24 @@
 <head>
   <title>Create User - The BLOG</title>
   <?php include "head.php";?> 
- </head>  
-
-    <?php
-    session_start();
-    if($_SESSION['id']['id_droits'] == 1337){
-    $users = $_SESSION['login'];
-    $bdd = mysqli_connect("localhost","root","root","blog");mysqli_set_charset($bdd,"UTF8");
-    $req=mysqli_query($bdd,"SELECT * from utilisateurs");
-    $res=mysqli_fetch_all($req,MYSQLI_ASSOC);
-    
-    ?>
-
+</head>  
 <body>
     <header>
         <?php include "header.php";?>
     </header>
+        <?php include "ham_menu.php"; ?>
+
+    <?php
+
+    if($_SESSION['id']['id_droits'] == 1337){
+    $users = $_SESSION['login'];
+    include 'db_link.php';
+    $req=mysqli_query($conn,"SELECT * from utilisateurs");
+    $res=mysqli_fetch_all($req,MYSQLI_ASSOC);
+    
+    ?>
+
+
  
             <!-- //////////////////// gestion des Utilisateurs \\\\\\\\\\\\\\\\\ -->
 
@@ -63,7 +65,8 @@
                     ///////////// requete pour envoyer les infos dans la bdd\\\\\\\\\\\ -->
 
                                 if($login == $confname && $password == $confpassword && $email == $confemail && $taken == false){
-                                    $req = mysqli_query($bdd,"INSERT INTO utilisateurs(login, password, email, id_droits) VALUES ('$login','$password','$email','$id_droits')");
+                                     $npassword = password_hash($password, PASSWORD_DEFAULT);
+                                    $req = mysqli_query($conn,"INSERT INTO utilisateurs(login, password, email, id_droits) VALUES ('$login','$npassword','$email','$id_droits')");
                                     header('Location: admin.php');
                                     
                             }               
