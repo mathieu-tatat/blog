@@ -2,11 +2,11 @@
    //_________________connect to SQL_________________//
 
    $servername = "localhost:3306";
-   $username = "-Root";
-   $password = "-Root";
+   $username = "root1337";
+   $password = "root1337";
 
    // Create connection
 
-   $conn = new mysqli($servername, $username, $password, 'antoine-maherault_blog');
+   $conn = new mysqli($servername, $username, $password, 'mathieu-tatat_blog');
 ?>
 
