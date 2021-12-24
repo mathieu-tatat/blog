@@ -39,7 +39,7 @@
    session_destroy();
    header("Location:index.php");
    }
-   echo "<a href='https://github.com/pierre-ninfei/blog' target ='_blank' class='fa fa-github'></a>
+   echo "<a href='https://github.com/mathieu-tatat/blog' target ='_blank' class='fa fa-github'></a>
          </div>
       <div class ='social'>
       </div>
@@ -47,7 +47,6 @@
    <p id='copyright'>Copyright 2021 - The Blog. - Tous droits réservés <p>"
 ?>
 
-<!-- <a class = 'github' href='https://github.com/pierre-ninfei/blog'> Github </a>  -->
 
 
 
